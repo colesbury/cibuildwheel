@@ -72,6 +72,9 @@ def container_image_for_python_configuration(config: PythonConfiguration, option
     _, platform_tag = config.identifier.split("-", 1)
     _, platform_arch = platform_tag.split("_", 1)
 
+    if config.identifier.startswith("nogil"):
+        platform_arch = f"nogil_{platform_arch}"
+
     assert build_options.manylinux_images is not None
     assert build_options.musllinux_images is not None
 
