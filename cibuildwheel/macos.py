@@ -145,6 +145,10 @@ def install_nogil(tmp: Path, url: str) -> Path:
             installation_path.parent.mkdir(parents=True, exist_ok=True)
             call("tar", "-C", installation_path.parent, "-xf", downloaded_tar_bz2)
             downloaded_tar_bz2.unlink()
+            print("installation_path.parent")
+            print(os.listdir(installation_path.parent))
+            print("installation_path")
+            print(os.listdir(installation_path))
     return installation_path / "bin" / "python3"
 
 
