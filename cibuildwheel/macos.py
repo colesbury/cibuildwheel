@@ -184,7 +184,6 @@ def setup_python(
 
     print(f"contents of {venv_path}")
     print(os.listdir(venv_path))
-    print(os.listdir(venv_path / "include"))
 
     # we version pip ourselves, so we don't care about pip version checking
     env["PIP_DISABLE_PIP_VERSION_CHECK"] = "1"
