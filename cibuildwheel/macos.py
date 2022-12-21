@@ -170,6 +170,7 @@ def setup_python(
     assert base_python.exists()
 
     call(base_python, "-m", "pip", "--version")
+    call(base_python, "-c", "import ssl")
     call(base_python, "-m", "pip", "install", "delocate")
 
     log.step("Setting up build environment...")
