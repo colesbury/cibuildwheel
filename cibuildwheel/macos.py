@@ -170,6 +170,7 @@ def setup_python(
     assert base_python.exists()
 
     call(base_python, "-m", "pip", "--version")
+    call("otool", "-L", base_python.parent.parent / "lib"/"python3.9"/"lib-dynload"/"_ssl.nogil-39b-darwin.so")
     call(base_python, "-c", "import ssl")
     call(base_python, "-m", "pip", "install", "delocate")
 
