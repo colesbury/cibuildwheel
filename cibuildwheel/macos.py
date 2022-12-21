@@ -145,10 +145,6 @@ def install_nogil(tmp: Path, url: str) -> Path:
             installation_path.parent.mkdir(parents=True, exist_ok=True)
             call("tar", "-C", installation_path.parent, "-xf", downloaded_tar_bz2)
             downloaded_tar_bz2.unlink()
-            print("installation_path.parent")
-            print(os.listdir(installation_path.parent))
-            print("installation_path")
-            print(os.listdir(installation_path))
     return installation_path / "bin" / "python3"
 
 
@@ -172,6 +168,9 @@ def setup_python(
         msg = "Unknown Python implementation"
         raise ValueError(msg)
     assert base_python.exists()
+
+    call(base_python, "-m", "pip", "--version")
+    call(base_python, "-m", "pip", "install", "delocate")
 
     log.step("Setting up build environment...")
     venv_path = tmp / "venv"
