@@ -169,11 +169,6 @@ def setup_python(
         raise ValueError(msg)
     assert base_python.exists()
 
-    call(base_python, "-m", "pip", "--version")
-    call("otool", "-L", base_python.parent.parent / "lib"/"python3.9"/"lib-dynload"/"_ssl.nogil-39b-darwin.so")
-    call(base_python, "-c", "import ssl")
-    call(base_python, "-m", "pip", "install", "delocate")
-
     log.step("Setting up build environment...")
     venv_path = tmp / "venv"
     env = virtualenv(base_python, venv_path, dependency_constraint_flags)
@@ -186,6 +181,9 @@ def setup_python(
     # https://github.com/pypa/virtualenv/issues/620
     # Also see https://github.com/python/cpython/pull/9516
     env.pop("__PYVENV_LAUNCHER__", None)
+
+    print(f"contents of {venv_path}")
+    print(os.listdir(venv_path / "include"))
 
     # we version pip ourselves, so we don't care about pip version checking
     env["PIP_DISABLE_PIP_VERSION_CHECK"] = "1"
