@@ -183,6 +183,7 @@ def setup_python(
     env.pop("__PYVENV_LAUNCHER__", None)
 
     print(f"contents of {venv_path}")
+    print(os.listdir(venv_path))
     print(os.listdir(venv_path / "include"))
 
     # we version pip ourselves, so we don't care about pip version checking
