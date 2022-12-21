@@ -237,6 +237,9 @@ def setup_python(
     # PyPy defaults to 10.7, causing inconsistencies if it's left unset.
     env.setdefault("MACOSX_DEPLOYMENT_TARGET", "11.0" if config_is_arm64 else "10.9")
 
+    print(f"env={env}")
+    call("python", "-c", "import setuptools._distutils.sysconfig; print(setuptools._distutils.sysconfig.get_python_inc())")
+
     if python_configuration.version not in {"3.6", "3.7"}:
         if config_is_arm64:
             # macOS 11 is the first OS with arm64 support, so the wheels
