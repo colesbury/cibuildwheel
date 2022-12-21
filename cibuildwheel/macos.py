@@ -238,10 +238,10 @@ def setup_python(
     env.setdefault("MACOSX_DEPLOYMENT_TARGET", "11.0" if config_is_arm64 else "10.9")
 
     print(f"env={env}")
-    call("pip", "list")
-    call("python", "--version")
+    call("pip", "list", env=env)
+    call("python", "--version", env=env)
     try:
-        call("python", "-c", "import setuptools._distutils.sysconfig; print(setuptools._distutils.sysconfig.get_python_inc())")
+        call("python", "-c", "import setuptools._distutils.sysconfig; print(setuptools._distutils.sysconfig.get_python_inc())", env=env)
     except:
         pass
 
