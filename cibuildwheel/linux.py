@@ -132,7 +132,7 @@ def build_in_container(
         log.step("Running before_all...")
 
         env = container.get_environment()
-        env["PATH"] = f'/opt/python/cp38-cp38/bin:{env["PATH"]}'
+        env["PATH"] = f'/opt/python/nogil39-nogil_39b_x86_64_linux_gnu/bin:{env["PATH"]}'
         env["PIP_DISABLE_PIP_VERSION_CHECK"] = "1"
         env = before_all_options.environment.as_dictionary(
             env, executor=container.environment_executor
