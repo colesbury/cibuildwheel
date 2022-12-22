@@ -132,7 +132,7 @@ def install_pypy(tmp: Path, url: str) -> Path:
 
 def install_nogil(tmp: Path, url: str) -> Path:
     nogil_tar_gz = url.rsplit("/", 1)[-1]
-    extension = "-macos.tar.gz"
+    extension = ".tar.gz"
     assert nogil_tar_gz.endswith(extension)
     installation_path = CIBW_CACHE_PATH / nogil_tar_gz[: -len(extension)]
     with FileLock(str(installation_path) + ".lock"):
